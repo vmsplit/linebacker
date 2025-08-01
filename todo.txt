@@ -1,0 +1,14 @@
+--=> (most priority)
+-==> (medium priority)
+===> (low priority)
+
+[08/01/25]
+| :: work on:                                                        -------------- .
+|    --=> remove placeholders find and copy over actual addresses
+|    --=> setup new qemu environment with xscale ARM processor (???)
+|        -> coproc 15's c9 lockdown register apparently is available just nop'ped out
+|    -==> configure cross-compiler
+|    -==> confirm PL011 UART base
+|        -> apparently set at 0x09000000 (???)
+|    ===> perhaps remove unecessary inlines
+` --------------
