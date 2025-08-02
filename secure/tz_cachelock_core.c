@@ -28,6 +28,7 @@ static inline int check_and_op(const tz_cachelock_desc_t *desc)
     int valid = tz_platform_phys_addr_valid(desc->paddr, sizeof(uint64_t))
               & tz_platform_cacheline_associated(desc->paddr, desc->cacheline_addr);
 
+
     if (!valid)
     {
         tz_platform_cacheline_flush(desc->cacheline_addr);
@@ -49,6 +50,8 @@ static inline int check_and_op(const tz_cachelock_desc_t *desc)
 
     tz_platform_cacheline_flush(desc->cacheline_addr);
     tz_cachelock_log_flush(desc->paddr, desc->cacheline_addr);
+
+
     return 0;
 }
 
@@ -59,11 +62,14 @@ int tz_cachelock_batch(const tz_cachelock_desc_t *desc, size_t n, uint32_t *resu
         return -1;
     uint32_t bitmap = 0;
 
+
     for (size_t i = 0; i < n; ++i)
     {
         int locked = check_and_op(&desc[i]);
         bitmap |= (locked << i);
     }
     *result_bitmap = bitmap;
+
+
     return 0;
 }

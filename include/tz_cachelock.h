@@ -8,8 +8,10 @@
 
 #define TZ_CACHELOCK_MAX_DESCS        32
 
+
 #define TZ_CACHELOCK_OP_LOCK          1u
 #define TZ_CACHELOCK_OP_UNLOCK        2u
+
 
 #define TZ_CACHELOCK_STATUS_OK        0
 #define TZ_CACHELOCK_STATUS_BAD      -1

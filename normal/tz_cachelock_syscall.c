@@ -1,4 +1,5 @@
 #include "../smc/tz_cachelock_smc.h"
+#include "../secure/com.h"
 #include <stdint.h>
 #include <stddef.h>
 // #include <stdio.h>
@@ -50,7 +51,11 @@ int tz_cachelock_req(uint64_t *paddrs, uint64_t *cacheline_addrs, size_t cnt, ui
     {
         if (!((args.result_bitmap >> i) & 1))
         {
-            // (Ryan): Log and handle any errors (???)
+            // we could use a ring buffer here but for now
+            // we can use UART debug logging
+            serial_print("\n");
+            serial_print("linebacker: invalid bitmap");
+            serial_print("\n");
         }
     }
     return 0;

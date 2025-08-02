@@ -12,9 +12,11 @@ bool tz_platform_phys_addr_valid(uint64_t paddr, size_t length)
         uint64_t start = tz_dram_regions[i].base;
         uint64_t end   = start + tz_dram_regions[i].size;
 
+
         uint64_t in_region = ((paddr - start) | (end - (paddr + length))) >> 63;
         if (!in_region) return true;
     }
+
 
     return false;
 }
@@ -25,8 +27,6 @@ bool tz_platform_cacheline_associated(uint64_t paddr, uint64_t cacheline_addr)
     //TODO (Ryan): Fix platform override for virt2phys mappings
     return paddr == cacheline_addr;
 }
-
-
 static void __always_inline tz_platform_cacheline_lock(uint64_t cacheline_addr)
 {
     __asm__ volatile("dc cisw, %0" :: "r"(cacheline_addr) : "memory");
